@@ -3,10 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WorkBuddy学习手册</title>
+<title>WorkBuddy 学习手册 · 案例驱动，从零基础到上手</title>
+<meta name="description" content="一本案例驱动的 WorkBuddy 学习手册：5 章入门与进阶正文 + 8 个实战案例，覆盖三种工作模式、专家与技能、Word/Excel/PPT、Obsidian 与知识库工作流。">
+<meta name="author" content="陈亮">
+<meta name="theme-color" content="#3f5e6b">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="WorkBuddy 学习手册">
+<meta property="og:title" content="WorkBuddy 学习手册：一句话 AI 帮你搞定所有繁琐工作">
+<meta property="og:description" content="案例驱动 · 从零基础到上手。含 5 章正文与 8 个实战案例，全部在一个 HTML 文件里，可离线阅读。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WorkBuddy 学习手册">
+<meta name="twitter:description" content="案例驱动 · 从零基础到上手，含 5 章正文与 8 个实战案例。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233f5e6b'/%3E%3Ctext x='32' y='44' font-family='Helvetica,Arial,sans-serif' font-size='34' font-weight='bold' fill='%23faf8f3' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
 <style>
   :root{
-    --red:#3f5e6b; --yellow:#c2a35a; --ink:#26241f; --muted:#7a736a;
+    /* 变量名与色值保持一致：brand=品牌灰蓝，gold=金褐，muted=次要文字 */
+    --brand:#3f5e6b; --gold:#c2a35a; --ink:#26241f; --muted:#6f6960;
     --bg:#faf8f3; --card:#fff; --line:#e7e2d8; --blue:#4a6b78;
     --green:#5c7a63; --purple:#6b7785; --orange:#b8924a; --teal:#0ca678;
   }
@@ -18,29 +30,29 @@
   .sidebar{width:288px;flex:0 0 288px;background:#fafafa;border-right:1px solid var(--line);
     position:sticky;top:0;align-self:flex-start;height:100vh;overflow-y:auto;padding:22px 16px;}
   .sidebar h3{font-size:12px;color:var(--muted);letter-spacing:1px;margin-bottom:12px;}
-  .sidebar .brand{font-size:17px;font-weight:800;color:var(--red);margin-bottom:2px;}
+  .sidebar .brand{font-size:17px;font-weight:800;color:var(--brand);margin-bottom:2px;}
   .sidebar .brand small{display:block;font-size:11px;color:var(--muted);font-weight:400;margin-top:2px;}
-  .toc-group{margin:16px 0 4px;font-size:12px;font-weight:800;color:var(--red);}
+  .toc-group{margin:16px 0 4px;font-size:12px;font-weight:800;color:var(--brand);}
   .sidebar a{display:block;font-size:13px;color:#444;text-decoration:none;padding:5px 9px;
     border-radius:6px;margin:1px 0;transition:.15s;}
-  .sidebar a:hover{background:#fff;color:var(--red);}
+  .sidebar a:hover{background:#fff;color:var(--brand);}
   .sidebar a.sub{padding-left:20px;font-size:12.5px;color:#888;}
-  .sidebar a.active{background:#fff;color:var(--red);font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.06);}
+  .sidebar a.active{background:#fff;color:var(--brand);font-weight:700;box-shadow:0 1px 2px rgba(0,0,0,.06);}
   /* Main */
   .main{flex:1;min-width:0;padding:0 0 70px;}
   section{padding:44px 54px;background:var(--card);margin:18px;border-radius:14px;
     box-shadow:0 1px 3px rgba(0,0,0,.05);}
   .cover{background:linear-gradient(135deg,#3f5e6b 0%,#2c4651 100%);color:#fff;text-align:center;
     padding:84px 54px;border-radius:14px;margin:18px;position:relative;overflow:hidden;}
-  .cover .kicker{display:inline-block;background:#fff;color:var(--red);font-weight:800;
+  .cover .kicker{display:inline-block;background:#fff;color:var(--brand);font-weight:800;
     padding:6px 16px;border-radius:30px;font-size:14px;margin-bottom:22px;}
   .cover h1{font-size:40px;line-height:1.25;font-weight:900;letter-spacing:.5px;margin-bottom:16px;}
-  .cover h1 .hl{background:var(--yellow);color:#111;padding:0 8px;border-radius:4px;}
+  .cover h1 .hl{background:var(--gold);color:#111;padding:0 8px;border-radius:4px;}
   .cover p{font-size:17px;color:#e7eef0;max-width:660px;margin:0 auto;}
   .cover .wm{position:absolute;right:14px;bottom:12px;font-size:11px;color:rgba(255,255,255,.65);}
-  h2.sec{font-size:29px;font-weight:900;color:var(--red);margin-bottom:4px;
-    border-left:8px solid var(--red);padding-left:14px;line-height:1.3;}
-  .sec-sub{display:inline-block;background:var(--yellow);color:#111;font-weight:700;
+  h2.sec{font-size:29px;font-weight:900;color:var(--brand);margin-bottom:4px;
+    border-left:8px solid var(--brand);padding-left:14px;line-height:1.3;}
+  .sec-sub{display:inline-block;background:var(--gold);color:#111;font-weight:700;
     padding:5px 13px;border-radius:4px;font-size:14px;margin:12px 0 22px;}
   h3.blk{font-size:19px;font-weight:800;margin:26px 0 8px;color:#222;}
   h4.blk{font-size:16px;font-weight:800;margin:18px 0 6px;color:#222;}
@@ -48,7 +60,7 @@
   ul,ol{margin:11px 0 11px 22px;color:#333;}
   li{margin:5px 0;}
   strong{color:#111;}
-  .num{color:var(--red);font-weight:800;}
+  .num{color:var(--brand);font-weight:800;}
   /* Callout */
   .callout{border-left:5px solid var(--blue);background:#f0f6fc;padding:13px 17px;border-radius:0 8px 8px 0;margin:16px 0;}
   .callout.warn{border-color:var(--orange);background:#fff4ec;}
@@ -59,7 +71,7 @@
   /* Table */
   table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;}
   th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;}
-  th{background:#eef2f1;color:var(--red);font-weight:700;}
+  th{background:#eef2f1;color:var(--brand);font-weight:700;}
   tr:nth-child(even) td{background:#fcfcfc;}
   /* Code/prompt */
   .code{background:#1e1e1e;color:#e6e6e6;padding:15px 17px;border-radius:10px;
@@ -67,7 +79,7 @@
     white-space:pre-wrap;margin:14px 0;overflow-x:auto;}
   .code .c{color:#7fdc7f;} .code .p{color:#ffd479;}
   code{font-family:"SF Mono",Consolas,Menlo,monospace;font-size:.9em;
-    background:#f3efe8;color:var(--red);padding:1px 5px;border-radius:4px;}
+    background:#f3efe8;color:var(--brand);padding:1px 5px;border-radius:4px;}
   /* Diagram */
   .diagram{background:#fbfbfb;border:1px solid var(--line);border-radius:12px;padding:16px;margin:18px 0;text-align:center;}
   .diagram svg{width:100%;max-width:780px;height:auto;}
@@ -76,13 +88,13 @@
   .phonewrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;margin:18px 0;}
   .phone{width:210px;background:#111;border-radius:26px;padding:9px;box-shadow:0 6px 18px rgba(0,0,0,.18);}
   .phone .scr{background:#fff;border-radius:18px;overflow:hidden;height:380px;display:flex;flex-direction:column;font-size:11px;color:#222;}
-  .phone .scr .topbar{background:var(--red);color:#fff;padding:7px 10px;font-weight:700;display:flex;justify-content:space-between;}
+  .phone .scr .topbar{background:var(--brand);color:#fff;padding:7px 10px;font-weight:700;display:flex;justify-content:space-between;}
   .phone .scr .body{padding:9px;overflow:hidden;flex:1;}
   .pill{display:inline-block;background:#f0f0f0;border-radius:20px;padding:3px 8px;margin:2px;font-size:10px;}
-  .pill.r{background:#eef2f1;color:var(--red);}
+  .pill.r{background:#eef2f1;color:var(--brand);}
   .cardmini{border:1px solid #eee;border-radius:8px;padding:6px;margin:5px 0;}
-  .cardmini .pr{color:var(--red);font-weight:800;float:right;}
-  .btnred{background:var(--red);color:#fff;text-align:center;border-radius:8px;padding:7px;font-weight:700;margin-top:6px;}
+  .cardmini .pr{color:var(--brand);font-weight:800;float:right;}
+  .btnred{background:var(--brand);color:#fff;text-align:center;border-radius:8px;padding:7px;font-weight:700;margin-top:6px;}
   .searchbar{background:#f3efe8;border-radius:20px;padding:5px 10px;color:#999;margin:4px 0;}
   .banner{background:linear-gradient(90deg,#c2a35a,#b8924a);color:#fff;border-radius:8px;padding:8px;font-weight:700;margin:5px 0;}
   .seg{height:5px;background:#eee;border-radius:3px;margin:4px 0;}
@@ -97,17 +109,47 @@
   .formrow label{width:90px;color:#555;}
   .formrow .inp{flex:1;border:1px solid #ddd;border-radius:6px;padding:6px 9px;background:#fafafa;}
   .chip{display:inline-block;border:1px solid #ddd;border-radius:6px;padding:5px 11px;font-size:12px;margin:3px;cursor:default;}
-  .chip.on{background:var(--red);color:#fff;border-color:var(--red);}
+  .chip.on{background:var(--brand);color:#fff;border-color:var(--brand);}
   /* 前言总目录导航 */
   .nav-toc{list-style:none;padding-left:0;}
   .nav-toc ul{list-style:none;padding-left:22px;margin:4px 0;}
   .nav-toc > li{margin:11px 0;}
-  .nav-toc a{color:var(--red);text-decoration:none;font-weight:600;}
+  .nav-toc a{color:var(--brand);text-decoration:none;font-weight:600;}
   .nav-toc a:hover{text-decoration:underline;}
   .toc-note{font-size:12.5px;color:var(--muted);margin:2px 0 14px;}
   .footer{text-align:center;color:#aaa;font-size:12.5px;padding:26px;}
   @media(max-width:920px){.book{flex-direction:column;}.sidebar{width:100%;height:auto;position:static;}
     section{padding:28px 20px;}.cover{padding:56px 20px;}.cover h1{font-size:28px;}}
+  /* 窄屏：表格可横向滚动，避免撑破版面 */
+  @media(max-width:640px){
+    table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;font-size:13px;}
+    .shot{overflow-x:auto;}
+    .chapter-nav{display:none;}
+  }
+  /* 章内小节导航 */
+  .chapter-nav{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 22px;padding:10px 12px;
+    background:#f7f5f0;border:1px solid var(--line);border-radius:8px;font-size:12.5px;}
+  .chapter-nav b{color:var(--brand);font-weight:800;margin-right:2px;}
+  .chapter-nav a{color:#5d564d;text-decoration:none;padding:2px 7px;border-radius:5px;}
+  .chapter-nav a:hover{background:#fff;color:var(--brand);}
+  /* 打印 / 导出 PDF：去掉阴影与侧栏，压缩留白，保留分页 */
+  @media print{
+    body{background:#fff;color:#000;line-height:1.6;}
+    .sidebar,.chapter-nav{display:none !important;}
+    .book{display:block;max-width:none;}
+    .main{padding:0;}
+    section,.cover{margin:0 0 10px;box-shadow:none;border:none;border-radius:0;padding:16px 0;}
+    .cover{background:#fff !important;color:#000 !important;border-bottom:2px solid #000;padding:24px 0;}
+    .cover p,.cover .wm{color:#333 !important;}
+    .cover h1{font-size:26px;}
+    .cover h1 .hl{background:none;padding:0;}
+    h2.sec{page-break-after:avoid;}
+    h3.blk,h4.blk{page-break-after:avoid;}
+    table,figure,.shot,.diagram,.code,.callout{page-break-inside:avoid;}
+    .shot,.diagram,.code{box-shadow:none;border:1px solid #ccc;}
+    a{color:#000;text-decoration:none;}
+    @page{margin:14mm 12mm;}
+  }
 </style>
 </head>
 <body>
@@ -122,10 +164,10 @@
     <a href="#ch1" class="sub">第 1 章　WorkBuddy 是什么</a>
     <a href="#install" class="sub">第 2 章　环境准备、账号与安装</a>
     <a href="#ch3" class="sub">第 3 章　第一个任务</a>
-    <a href="#arch" class="sub">6 层架构配置手册</a>
     <div class="toc-group">WorkBuddy 进阶</div>
     <a href="#ch4" class="sub">第 4 章　三种工作模式详解</a>
     <a href="#ch5" class="sub">第 5 章　任务、空间与对话管理</a>
+    <a href="#arch" class="sub">能力框架 · 六层闭环</a>
     <a href="#scenarios" class="sub">四大实用场景 &amp; 六步流程</a>
     <a href="#office" class="sub">办公 Word / Excel / PPT</a>
     <a href="#experts" class="sub">专家与技能 · Experts &amp; Skills</a>
@@ -151,18 +193,20 @@
 
     <section>
       <p>WorkBuddy 是一款 <strong>AI 原生的桌面智能体工作台</strong>。你可以通过主流移动端 IM 应用下达指令，AI 会在你的电脑上自动完成任务——读文件、做表格、写文档、搭网页，直到把成果交到你手上。</p>
-      <h3 class="blk">核心能力</h3>
+      <h3 class="blk" id="sec-1">核心能力</h3>
       <ul>
         <li><strong>理解自然语言</strong>——一句话把任务交给它，不用写代码。</li>
         <li><strong>自主规划执行</strong>——接到目标后自己拆解步骤、调度工具去完成。</li>
         <li><strong>多模态任务处理</strong>——文档、电子表格、PPT、数据分析都能办。</li>
         <li><strong>本地文件操作</strong>——在授权文件夹内读取与写入你的本地文件。</li>
+        <li><strong>多任务并行</strong>——可同时开多个任务，互不打断，适合一批活一起推。</li>
+        <li><strong>结果交付与验收</strong>——交付的是可打开、可编辑的文档 / 表格 / PPT，不是一段文字。</li>
       </ul>
       <div class="callout gray">
         <b>使用者说：</b>"用 AI 半年，最大的改变不是它更聪明了，而是我终于不用把时间花在复制粘贴、整理格式、反复改稿这些琐事上——这些现在一句话就交给 WorkBuddy 了。"
       </div>
-      <p>WorkBuddy 直接在你的电脑上执行，是腾讯推出的「全场景职场 AI 智能体」桌面工作台，<strong>2026 年 3 月 9 日正式发布</strong>：零部署、零代码，下载即用。</p>
-      <h3 class="blk">产品界面一览</h3>
+      <p>WorkBuddy 直接在你的电脑上执行，是腾讯推出的「全场景 AI 工作台」，<strong>2026 年 3 月正式发布</strong>：零部署、零代码，下载即用。</p>
+      <h3 class="blk" id="sec-2">产品界面一览</h3>
       <div class="shot">
         <div class="bar"><span class="dot r1"></span><span class="dot r2"></span><span class="dot r3"></span></div>
         <div class="menu"><b>对话</b><span>任务</span><span>知识库</span><span>技能</span><span>文件</span><span>设置</span></div>
@@ -171,9 +215,9 @@
             对话区：输入需求，AI 实时显示思考过程与中间步骤，右侧展示产物与预览。
           </div>
           <div style="flex:1;border:1px solid #eee;border-radius:8px;padding:10px;font-size:12px;color:#555;">
-            <strong style="color:#222;">4.13-year outlook and key variables</strong><br>
-            GDP growth projected to slow from <strong>2.8%</strong> to <strong>2.3%</strong> through 2036; employment and payroll growth steady.<br>
-            <span style="color:#4a6b78;">Download report (PDF) ｜ View data ｜ Related research</span>
+            结果区：<strong style="color:#222;">概览 / 全部文件 / 变更 / 预览</strong> 四个页签切换<br>
+            产物可直接打开、下载或一键部署上线；文件变更逐条列出，可回退。<br>
+            <span style="color:#4a6b78;">交付物落在这里，而不是停在对话里</span>
           </div>
         </div>
       </div>
@@ -183,50 +227,62 @@
     <section id="preface">
       <h2 class="sec">WorkBuddy 学习手册</h2>
       <span class="sec-sub">一本书案例驱动，从零基础学到 WorkBuddy 全部核心操作</span>
-      <h3 class="blk">阅读说明</h3>
+      <h3 class="blk" id="preface-1">阅读说明</h3>
       <p>本书适合具备一定编程基础或办公经验的读者，系统学习 WorkBuddy 与 AI Agent 相关知识。每一章都包含<strong>学习目标、操作案例、练习题、检查清单与避坑指南</strong>，建议跟着案例动手实操，而不是只读不练。</p>
       <div class="callout">
-        <p style="margin:0;"><strong>关于 WorkBuddy：</strong>WorkBuddy 是腾讯云 CodeBuddy 团队于 2026 年推出的 AI Agent 桌面智能工作平台，定位为「全场景职场 AI 智能体」。它与日常使用的聊天机器人有着本质区别——不只是简单的对话，还能直接获取本地文件、编辑文档、执行任务、执行系统命令。它同 Cursor 等同属腾讯 AI 智能体家族，基于 OpenClaw 框架构建，被内部称作"腾讯小龙"。</p>
+        <p style="margin:0;"><strong>关于 WorkBuddy：</strong>WorkBuddy 是腾讯出品的「全场景 AI 工作台」，官方定位是「AI Agent 办公新范式」。它与日常使用的聊天机器人有着本质区别——不只是对话，还能在授权范围内读取本地文件、编辑文档、执行任务、运行命令，最后交付可验收的成果（文档 / 表格 / PPT / 网页 / 应用）。它和腾讯云面向开发者的 CodeBuddy 同源，但面向的是「把活干完」的全场景职场任务。</p>
       </div>
-      <div class="callout tip"><b>截至 2026 年，WorkBuddy 已成为国内办公智能体市场最具代表性的产品之一。</b></div>
+      <div class="callout tip"><b>它解决的核心问题：</b>通用大模型止步于「给出文字」，而真实工作要的是「交付成果 + 可追溯 + 可验收」。WorkBuddy 把这三件事做成了产品默认行为。</div>
 
-      <h3 class="blk">总目录（全书导航 · 点击章节名直达正文）</h3>
-      <p class="toc-note">本书结构一览：以下仅为章节导航，详细讲解见各章正文；小节未单独设锚点，点击后跳至所在章节开头。</p>
+      <h3 class="blk" id="preface-2">总目录（全书导航 · 点击章节名直达正文）</h3>
+      <p class="toc-note">本书结构一览：第一、二部分的小节可直接点击跳转；第三部分为案例篇，点章节名进入后按顺序阅读。</p>
 
       <h4 class="blk">第一部分　入门篇 —— 认识 WorkBuddy</h4>
       <ul class="nav-toc">
         <li><a href="#ch1">第 1 章　WorkBuddy 是什么</a>
           <ul>
-            <li><a href="#ch1">1.1　WorkBuddy vs 普通 AI 聊天：本质区别</a></li>
-            <li><a href="#ch1">1.2　WorkBuddy 与 CodeBuddy 的关系</a></li>
-            <li><a href="#ch1">1.3　WorkBuddy vs Claude Code / Cursor / Copilot：该选哪个？</a></li>
-            <li><a href="#ch1">1.4　核心能力全景图</a></li>
+            <li><a href="#s1-1">1.1　WorkBuddy vs 普通 AI 聊天：本质区别</a></li>
+            <li><a href="#s1-2">1.2　WorkBuddy 与 CodeBuddy 的关系</a></li>
+            <li><a href="#s1-3">1.3　WorkBuddy vs Claude Code / Cursor / Copilot：该选哪个？</a></li>
+            <li><a href="#s1-4">1.4　核心能力全景图</a></li>
           </ul>
         </li>
         <li><a href="#install">第 2 章　环境准备、账号与安装</a>
           <ul>
-            <li><a href="#install">2.1　系统要求</a></li>
-            <li><a href="#install">2.2　账号准备</a></li>
-            <li><a href="#install">2.3　WorkBuddy 简介</a></li>
-            <li><a href="#install">2.4　下载与安装</a></li>
-            <li><a href="#install">2.5　登录与权限授权 · 新人积分</a></li>
+            <li><a href="#s2-1">2.1　系统要求</a></li>
+            <li><a href="#s2-2">2.2　账号准备</a></li>
+            <li><a href="#s2-3">2.3　下载与安装</a></li>
+            <li><a href="#s2-4">2.4　登录与权限授权 · 新人积分</a></li>
           </ul>
         </li>
         <li><a href="#ch3">第 3 章　第一个任务</a>
           <ul>
-            <li><a href="#ch3">3.1　启动 WorkBuddy：三栏式工作台</a></li>
-            <li><a href="#ch3">3.2　三种工作模式：Ask、Plan、Craft</a></li>
-            <li><a href="#ch3">3.3　第一个实战任务：写请假邮件并整理桌面</a></li>
-            <li><a href="#ch3">3.4　观察思考过程与执行轨迹</a></li>
+            <li><a href="#s3-1">3.1　启动 WorkBuddy：三栏式工作台</a></li>
+            <li><a href="#s3-2">3.2　三种工作模式：Ask、Plan、Craft</a></li>
+            <li><a href="#s3-3">3.3　第一个实战任务：写请假邮件并整理桌面</a></li>
+            <li><a href="#s3-4">3.4　观察思考过程与执行轨迹</a></li>
           </ul>
         </li>
       </ul>
 
       <h4 class="blk">第二部分　进阶篇</h4>
       <ul class="nav-toc">
-        <li><a href="#ch4">第 4 章　三种工作模式详解</a></li>
-        <li><a href="#ch5">第 5 章　任务、空间与对话管理</a></li>
-        <li><a href="#arch">WorkBuddy 6 层架构配置手册</a></li>
+        <li><a href="#ch4">第 4 章　三种工作模式详解</a>
+          <ul>
+            <li><a href="#s4-1">4.1　Ask 模式：保守的「顾问」</a></li>
+            <li><a href="#s4-2">4.2　Plan 模式：自动规划的「项目经理」</a></li>
+            <li><a href="#s4-3">4.3　Craft 模式：精准把控的「执行家」</a></li>
+            <li><a href="#s4-4">4.4　适用场景与选择策略</a></li>
+          </ul>
+        </li>
+        <li><a href="#ch5">第 5 章　任务、空间与对话管理</a>
+          <ul>
+            <li><a href="#ch5-1">5.1　任务列表</a></li>
+            <li><a href="#ch5-2">5.2　工作空间</a></li>
+            <li><a href="#ch5-3">5.3　对话历史</a></li>
+          </ul>
+        </li>
+        <li><a href="#arch">WorkBuddy 能力框架：从怎么干到怎么配</a></li>
         <li><a href="#scenarios">WorkBuddy 四大实用场景</a></li>
         <li><a href="#office">WorkBuddy 办公 —— Word、Excel、PPT</a></li>
         <li><a href="#experts">WorkBuddy 专家与技能</a></li>
@@ -249,8 +305,9 @@
     <section id="ch1">
       <h2 class="sec">第 1 章　WorkBuddy 是什么</h2>
       <span class="sec-sub">一句话定义，以及它和聊天机器人、编程工具的本质区别</span>
+      <nav class="chapter-nav"><b>本章</b><a href="#s1-1">1.1　WorkBuddy vs 普通…</a><a href="#s1-2">1.2　WorkBuddy 与 Cod…</a><a href="#s1-3">1.3　WorkBuddy vs Cl…</a><a href="#s1-4">1.4　核心能力全景图</a></nav>
 
-      <h3 class="blk">1.1　WorkBuddy vs 普通 AI 聊天：本质区别</h3>
+      <h3 class="blk" id="s1-1">1.1　WorkBuddy vs 普通 AI 聊天：本质区别</h3>
       <table>
         <tr><th>维度</th><th>普通 AI 聊天</th><th>WorkBuddy</th></tr>
         <tr><td>输出物</td><td>对话文字</td><td>文件 / 网页 / 应用 / 已完成的操作</td></tr>
@@ -261,10 +318,10 @@
       </table>
       <div class="callout"><b>一句话记住：</b>聊天机器人陪你聊，WorkBuddy 替你干。</div>
 
-      <h3 class="blk">1.2　WorkBuddy 与 CodeBuddy 的关系</h3>
+      <h3 class="blk" id="s1-2">1.2　WorkBuddy 与 CodeBuddy 的关系</h3>
       <p>CodeBuddy 是腾讯云面向开发者的 AI 编程工具；WorkBuddy 由同一团队推出，是更通用的「桌面智能体工作台」，把能力从写代码扩展到办公、文件、多模态与交付。两者同源，但 WorkBuddy 面向"把活干完"的全场景职场任务。</p>
 
-      <h3 class="blk">1.3　WorkBuddy vs Claude Code vs Cursor vs Copilot：该选哪个？</h3>
+      <h3 class="blk" id="s1-3">1.3　WorkBuddy vs Claude Code vs Cursor vs Copilot：该选哪个？</h3>
       <table>
         <tr><th>工具</th><th>定位</th><th>适合</th><th>不适合</th></tr>
         <tr><td>GitHub Copilot</td><td>IDE 内代码补全</td><td>写代码时自动补全</td><td>非编程办公任务</td></tr>
@@ -273,7 +330,7 @@
         <tr><td>WorkBuddy</td><td>桌面通用智能体</td><td>办公 / 文件 / 多模态 / 交付</td><td>重度专业编程（用 Cursor）</td></tr>
       </table>
 
-      <h3 class="blk">1.4　核心能力全景图</h3>
+      <h3 class="blk" id="s1-4">1.4　核心能力全景图</h3>
       <p>七类能力统一汇入"交付"：<strong>研究写作 / 数据分析 / 搭网站应用 / 多模态生成 / 系统访问 / 专家与连接器 / 自动化</strong>。无论哪类任务，最终都交付成文件、网页或可运行应用，而非一段文字。</p>
       <div class="callout tip"><b>选型建议：</b>写代码为主选 Cursor / Claude Code；要在自己电脑上把办公活干到交付，选 WorkBuddy。</div>
     </section>
@@ -281,15 +338,14 @@
     <section id="install">
       <h2 class="sec">第 2 章　环境准备、账号与安装</h2>
       <span class="sec-sub">下载即用零部署，0 代码基础，今天就能装上你的 AI 同事</span>
+      <nav class="chapter-nav"><b>本章</b><a href="#s2-1">2.1　系统要求</a><a href="#s2-2">2.2　账号准备</a><a href="#s2-3">2.3　下载与安装</a><a href="#s2-4">2.4　登录与权限授权 · 新人积分</a></nav>
 
-      <h4 class="blk">2.1　系统要求</h4>
+      <h3 class="blk" id="s2-1">2.1　系统要求</h3>
       <p>Windows 10+ 或 macOS 12+；内存 8GB 以上；保持联网以下载与同步。</p>
-      <h4 class="blk">2.2　账号准备</h4>
-      <p>准备微信或手机号（绑定腾讯云账号），用于登录与权益领取。</p>
-      <h4 class="blk">2.3　WorkBuddy 简介</h4>
-      <p>WorkBuddy 是腾讯云 CodeBuddy 团队打造的「AI 原生桌面智能体工作台」，定位为<strong>一个会在你电脑上干活的 AI 同事</strong>——你派任务，它规划、拆解步骤、操作本地文件、交付结果。无需写代码，下载即用。</p>
+      <h3 class="blk" id="s2-2">2.2　账号准备</h3>
+      <p>准备微信或手机号（绑定腾讯云账号），用于登录与权益领取。还没有账号的话，先在官网注册，顺手把新人积分领了（见 2.4）。</p>
 
-      <h4 class="blk">2.4　下载与安装</h4>
+      <h3 class="blk" id="s2-3">2.3　下载与安装</h3>
       <p>打开官方下载链接，页面会自动识别你的设备系统；点击下载后双击安装包即可完成安装。</p>
       <div class="shot">
         <div class="bar"><span class="dot r1"></span><span class="dot r2"></span><span class="dot r3"></span></div>
@@ -300,11 +356,11 @@
           <div class="menu" style="justify-content:center;border:none;">
             <b>AI 数据分析</b><span>OCR</span><span>内容创作</span><span>智能体</span><span>知识库</span>
           </div>
-          <div style="font-size:12px;color:#999;">🤖 机器人形象占位　·　自动检测设备：Windows / macOS</div>
+          <div style="font-size:12px;color:#8a8279;">自动识别设备：Windows / macOS · 下载后双击安装，无需配置环境</div>
         </div>
       </div>
 
-      <h4 class="blk">2.5　登录与权限授权</h4>
+      <h3 class="blk" id="s2-4">2.4　登录与权限授权 · 新人积分</h3>
       <p>支持<strong>微信登录</strong>与<strong>手机号验证登录</strong>（绑定腾讯云账号）。首次启动会请求本地文件与系统命令的权限授权，按需同意即可。</p>
       <p><strong>领取新人积分：</strong>登录后可在「我的」中领取 5000 积分新人礼包，用于抵扣 AI 调用额度。</p>
       <div class="shot">
@@ -333,27 +389,29 @@
     <section id="ch3">
       <h2 class="sec">第 3 章　第一个任务</h2>
       <span class="sec-sub">启动工作台，跑通你的第一次"派活 — 交付"</span>
-      <h3 class="blk">3.1　启动 WorkBuddy：认识三栏式工作台</h3>
+      <nav class="chapter-nav"><b>本章</b><a href="#s3-1">3.1　启动 WorkBuddy：认识…</a><a href="#s3-2">3.2　三种工作模式</a><a href="#s3-3">3.3　第一个实战任务：写请假邮件并整…</a><a href="#s3-4">3.4　观察思考过程与执行轨迹</a></nav>
+      <h3 class="blk" id="s3-1">3.1　启动 WorkBuddy：认识三栏式工作台</h3>
       <p>启动后看到三栏布局：左侧为目录 / 知识库，中间为对话区，右侧为结果区与预览区。所有产物与文件变更都在右侧可见。</p>
-      <h3 class="blk">3.2　三种工作模式</h3>
+      <h3 class="blk" id="s3-2">3.2　三种工作模式</h3>
       <p><strong>Ask</strong> 只问不动；<strong>Plan</strong> 先规划后执行；<strong>Craft</strong> 直接执行。新手默认用 Plan 最稳，确认方案再让它动手。</p>
-      <h3 class="blk">3.3　第一个实战任务：写请假邮件并整理桌面文件</h3>
+      <h3 class="blk" id="s3-3">3.3　第一个实战任务：写请假邮件并整理桌面文件</h3>
       <div class="code">帮我校对并写一封明天请假的邮件草稿（事由：病假，1 天，落款我的名字）；
 另外把桌面"待整理"文件夹里的 pdf 按月份归类到 D:\归档，先给我清单再动手。</div>
-      <h3 class="blk">3.4　观察思考过程与执行轨迹</h3>
+      <h3 class="blk" id="s3-4">3.4　观察思考过程与执行轨迹</h3>
       <p>在对话区看它逐步思考与中间步骤，在右侧看文件变更与产物，确认无误再采纳——这就是"可控可验收"。</p>
     </section>
 
     <section id="ch4">
       <h2 class="sec">第 4 章　三种工作模式详解</h2>
       <span class="sec-sub">Ask 顾问 · Plan 项目经理 · Craft 执行家</span>
-      <h3 class="blk">4.1　Ask 模式：保守的"顾问"</h3>
+      <nav class="chapter-nav"><b>本章</b><a href="#s4-1">4.1　Ask 模式：保守的"顾问"</a><a href="#s4-2">4.2　Plan 模式：自动规划的"项…</a><a href="#s4-3">4.3　Craft 模式：精准把控的"…</a><a href="#s4-4">4.4　适用场景与选择策略</a></nav>
+      <h3 class="blk" id="s4-1">4.1　Ask 模式：保守的"顾问"</h3>
       <p>只回答问题、读取文件、分析信息，<strong>不能改任何文件</strong>。适合"先看再决定"的场景，比如读代码、看文档、做只分析不改动的活。</p>
-      <h3 class="blk">4.2　Plan 模式：自动规划的"项目经理"</h3>
+      <h3 class="blk" id="s4-2">4.2　Plan 模式：自动规划的"项目经理"</h3>
       <p>先分析需求、出方案、拆步骤，<strong>确认后再执行</strong>。高价值、易出错的任务首选，能显著降低返工。</p>
-      <h3 class="blk">4.3　Craft 模式：精准把控的"执行家"</h3>
+      <h3 class="blk" id="s4-3">4.3　Craft 模式：精准把控的"执行家"</h3>
       <p>直接执行指令，可读写文件、运行命令、生成内容。任务明确且范围安全时使用。</p>
-      <h3 class="blk">4.4　适用场景与选择策略</h3>
+      <h3 class="blk" id="s4-4">4.4　适用场景与选择策略</h3>
       <table>
         <tr><th>模式</th><th>适合</th><th>不适合</th></tr>
         <tr><td><strong>Ask</strong></td><td>只读分析、看代码 / 文档</td><td>需产出文件或操作</td></tr>
@@ -366,20 +424,40 @@
     <section id="ch5">
       <h2 class="sec">第 5 章　任务、空间与对话管理</h2>
       <span class="sec-sub">把活组织好，才能复用与追溯</span>
-      <h3 class="blk">任务列表</h3>
-      <p>查看、复用、继续历史任务，不必每次从零开始；长任务可分段推进。</p>
-      <h3 class="blk">工作空间</h3>
-      <p>指定目录即划定文件读写范围，越界不动，安全可控。多人 / 多项目建议各用独立空间。</p>
-      <h3 class="blk">对话历史</h3>
-      <p>多轮上下文保留，可基于已有上下文持续追问优化；需要时回顾轨迹核对它做了什么。</p>
+      <nav class="chapter-nav"><b>本章</b><a href="#ch5-1">5.1　任务列表：把一次性使用变成资产</a><a href="#ch5-2">5.2　工作空间：先划边界，再放手</a><a href="#ch5-3">5.3　对话历史：可控可验收的依据</a></nav>
+      <h3 class="blk" id="ch5-1">5.1　任务列表：把一次性使用变成资产</h3>
+      <p>侧边栏按文件夹分组展示所有任务，支持搜索与按状态筛选（进行中 / 已完成）。它的价值不在「记录」，而在<strong>让上一次的上下文可以复用</strong>。</p>
+      <table>
+        <tr><th>你会遇到的场景</th><th>怎么做</th><th>为什么省事</th></tr>
+        <tr><td>同一份周报，下周还要再写</td><td>在上周任务里直接追加「按同样格式出本周版本」，而不是新建任务</td><td>格式约定、数据来源、语气都不用重新交代</td></tr>
+        <tr><td>长任务做了半截要下班</td><td>任务不会丢，第二天从任务列表接着推进</td><td>不必重新描述背景，AI 仍有前半段上下文</td></tr>
+        <tr><td>记不清上周让它改了哪些文件</td><td>打开对应任务，看结果区的「变更」页签</td><td>逐条列出改了什么，可核对可回退</td></tr>
+      </table>
+      <div class="callout tip"><p style="margin:0;"><b>一个习惯：</b>任务标题写成「对象 + 动作 + 交付物」，比如「Q3 销售数据 → 汇总分析 → 带图 PDF」，一个月后自己还能一眼认出来。</p></div>
+
+      <h3 class="blk" id="ch5-2">5.2　工作空间：先划边界，再放手</h3>
+      <p>指定一个目录作为工作空间，就等于划定它的文件读写范围——<strong>范围外的文件它不碰</strong>。这是本地 Agent 最重要的安全阀，比事后检查有效得多。</p>
+      <p><strong>怎么划分：</strong>一个项目一个空间，别把整个 D 盘或者桌面根目录直接给它。空间粒度越细，越界风险越低，回滚也越容易。</p>
+      <table>
+        <tr><th>做法</th><th>结果</th></tr>
+        <tr><td>工作空间 = 某个项目的目录</td><td>读写可控，产物归档清晰，出错只影响这一块</td></tr>
+        <tr><td>工作空间 = 整个盘 / 桌面</td><td>一次误操作可能牵连无关文件，且难以核查</td></tr>
+      </table>
+      <div class="callout warn"><p style="margin:0;"><b>避坑：</b>「工作空间」不等于「只读」。它划定的是<em>范围</em>，能不能写、要不要先确认，仍由 Ask / Plan / Craft 模式决定。两件事要分开想。</p></div>
+
+      <h3 class="blk" id="ch5-3">5.3　对话历史：可控可验收的依据</h3>
+      <p>多轮上下文会保留，你可以基于已有讨论持续追问、逐步逼近想要的结果，而不必每次都从头解释。</p>
+      <p><strong>验收时看三处：</strong>① 对话区的思考与中间步骤，判断思路对不对；② 结果区的产物，判断成品能不能用；③ 变更记录，判断有没有动到不该动的地方。三处都过一遍，再点采纳。</p>
+      <div class="callout"><p style="margin:0;"><b>追问答法：</b>别只说「再改改」，要说清改哪里、往哪个方向改——「图表换成饼图，颜色跟公司 VI 一致，标题改成『Q3 收入构成』」，一次就到位。</p></div>
     </section>
 
     <section id="arch">
-      <h2 class="sec">WorkBuddy 6 层架构配置手册</h2>
-      <span class="sec-sub">三段式任务拆解引擎，先确认再执行，交付可控可验收</span>
-      <h3 class="blk">背景</h3>
-      <p>当前多数通用大模型停留在"对话"层面，能力边界限于问答、文档生成，难以深度嵌入企业日常办公流程——缺少一条覆盖"需求收集 → PPT 制作 → 素材整合 → 网页搭建 → 运营交付"的独立闭环。</p>
-      <p><strong>能力概述：</strong>WorkBuddy 提出"六层闭环 AI Agent 能力框架"，把对话工具重新定义以真实业务任务为驱动核心，构建一套可靠、可验收、可复用的企业级智能工作助手体系。</p>
+      <h2 class="sec">WorkBuddy 能力框架：六层闭环</h2>
+      <span class="sec-sub">一套用来判断「任务该交给哪一层」的归纳框架，附配置要点</span>
+      <nav class="chapter-nav"><b>本章</b><a href="#arch-1">为什么需要这个框架</a><a href="#arch-2">六层分层能力架构详解</a><a href="#arch-3">任务卡住了，该查哪一层</a></nav>
+      <h3 class="blk" id="arch-1">为什么需要这个框架</h3>
+      <p>多数通用大模型停留在"对话"层面，能力边界限于问答与文档生成，难以嵌进企业日常办公的真实流程——缺的是一条覆盖"需求收集 → 方案确认 → 素材整合 → 执行产出 → 交付验收"的闭环。</p>
+      <div class="callout tip"><p style="margin:0;"><b>先说明一句：</b>下面这套「六层」是<strong>本书作者在实际使用中归纳的理解框架</strong>，用来回答"一个任务卡在哪一层、该去哪一层找解法"，不是官方架构文档。官方对扩展能力的说法是四类：专家、技能、连接器、资料库（详见「专家与技能」一章）。</p></div>
 
       <div class="diagram">
         <svg viewBox="0 0 780 360" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC,Microsoft YaHei,sans-serif">
@@ -387,9 +465,9 @@
             <rect x="240" y="14" width="300" height="42" rx="8" fill="#3f5e6b"/><text x="390" y="40" fill="#fff" font-weight="800">① 真实任务层</text>
             <rect x="240" y="66" width="300" height="42" rx="8" fill="#b8924a"/><text x="390" y="92" fill="#fff" font-weight="800">② Ask / Plan / Craft</text>
             <rect x="240" y="118" width="300" height="42" rx="8" fill="#5c7a63"/><text x="390" y="144" fill="#fff" font-weight="800">③ 场景理解层</text>
-            <rect x="240" y="170" width="300" height="42" rx="8" fill="#4a6b78"/><text x="390" y="196" fill="#fff" font-weight="800">④ 执行与执行编排</text>
+            <rect x="240" y="170" width="300" height="42" rx="8" fill="#4a6b78"/><text x="390" y="196" fill="#fff" font-weight="800">④ 执行与编排</text>
             <rect x="240" y="222" width="300" height="42" rx="8" fill="#7048e8"/><text x="390" y="248" fill="#fff" font-weight="800">⑤ 数据与外部服务层</text>
-            <rect x="240" y="274" width="300" height="42" rx="8" fill="#0ca678"/><text x="390" y="300" fill="#fff" font-weight="800">⑥ 交付结果</text>
+            <rect x="240" y="274" width="300" height="42" rx="8" fill="#0ca678"/><text x="390" y="300" fill="#fff" font-weight="800">⑥ 交付与验收</text>
             <line x1="390" y1="56" x2="390" y2="66" stroke="#ccc" stroke-width="2"/>
             <line x1="390" y1="108" x2="390" y2="118" stroke="#ccc" stroke-width="2"/>
             <line x1="390" y1="160" x2="390" y2="170" stroke="#ccc" stroke-width="2"/>
@@ -410,7 +488,7 @@
         小白常用　·　事一出一步交付　·　<b style="color:#b8924a">Ask 检查</b>　·　<b style="color:#b8924a">Plan 审查</b>　·　<b style="color:#b8924a">Craft 执行</b>　·　人工验收
       </div>
 
-      <h3 class="blk">六层分层能力架构详解</h3>
+      <h3 class="blk" id="arch-2">六层分别管什么</h3>
       <h4 class="blk">01 — 第 1 层：真实任务层</h4>
       <p>架构最顶层负责需求输入，锁定高频真实办公场景；摒弃无意义的闲聊，聚焦标准化高频办公任务：周报、PPT 制作、网页开发、多来源素材整理、运营任务交付。</p>
       <div class="callout tip"><b>这是产品的底层设计逻辑：</b>场景驱动——所有模型、工具、技能、连接器都服务于"真实任务"，而非纯对话需求，直击通用 AI"脱离业务、无法交付"的痛点。</div>
@@ -422,15 +500,48 @@
         <li><strong>Plan（先出方案）：</strong>信息确认后生成完整、可审阅的执行方案——含任务步骤、资源清单、交付格式、时间节点、验收标准；支持人工二次编辑，可审阅、可追溯，降低返工成本。</li>
         <li><strong>Craft（正式执行）：</strong>方案确认后启动完整执行流程，调度底层模型、角色、工具链落地任务——是执行任务的入口。</li>
       </ol>
-      <div class="callout warn"><b>三段式流程构成任务质量第一道防线，</b>解决 AI"一次性输出内容不可控、不符合业务标准"的行业痛点。</div>
+      <div class="callout warn"><b>三段式流程是任务质量的第一道防线，</b>解决 AI"一次性输出不可控、不符合业务标准"的老问题。</div>
+
+      <h4 class="blk">03 — 第 3 层：场景理解层</h4>
+      <p>把一句人话翻译成可执行的任务规格：识别这是"写文档"还是"改数据"，判断该调哪个专家、命中哪个技能、要不要联网、输出成什么格式。这一层的好坏，直接决定后面是"一次就对"还是"改八遍"。</p>
+      <p><strong>你能做的是把话说清：</strong>对象（哪份文件）、动作（汇总 / 改写 / 生成）、标准（多长、什么格式、给谁看）。三者齐了，理解层几乎不会跑偏。</p>
+
+      <h4 class="blk">04 — 第 4 层：执行与编排层</h4>
+      <p>真正干活的层：拆解子任务、按需调度不同模型、串起工具链（读文件 → 抽结构 → 算数 → 排版 → 导出），并在长任务里维护进度。多步任务能不能一次跑完，看的就是这一层的编排质量。</p>
+      <div class="callout tip"><p style="margin:0;"><b>实用判断：</b>如果任务反复卡在中途（做到一半停了、步骤乱了），通常是任务描述跨度过大。把它拆成两三个子任务分别交付，比指望它一口气做完更稳。</p></div>
+
+      <h4 class="blk">05 — 第 5 层：数据与外部服务层</h4>
+      <p>任务需要的事实从哪来：本地文件、资料库、连接器（飞书 / 腾讯文档等）、联网搜索、企业系统。这一层决定了答案"有依据"还是"凭印象"。</p>
+      <table>
+        <tr><th>数据源</th><th>什么时候用</th><th>注意</th></tr>
+        <tr><td>本地文件 / 工作空间</td><td>改自己的文档、表格、代码</td><td>先在 5.2 里把范围划对</td></tr>
+        <tr><td>资料库</td><td>需要跨文档检索、团队共享口径</td><td>重要结论让它标出处</td></tr>
+        <tr><td>连接器</td><td>读写飞书、腾讯文档等外部协作系统</td><td>回写类操作用 Plan 先确认字段</td></tr>
+        <tr><td>联网搜索</td><td>需要最新信息、外部事实</td><td>明确要求"标注来源"，否则容易混入旧数据</td></tr>
+      </table>
+
+      <h4 class="blk">06 — 第 6 层：交付与验收（出口，不是能力层）</h4>
+      <p>严格说这一层不是"能力"，而是所有能力的<strong>出口标准</strong>：产物必须是可打开、可编辑、可继续加工的文件（docx / xlsx / pptx / 网页 / 应用），而不是一段还得自己复制粘贴的文字。</p>
+      <p>验收三问：<strong>能不能直接用？</strong>（格式、命名、完整性）<strong>依据站不站得住？</strong>（数据来源是否交代）<strong>有没有越界？</strong>（改了不该改的文件没有）。三问都过，这次任务才算完成。</p>
+
+      <h3 class="blk" id="arch-3">任务卡住了，该查哪一层</h3>
+      <table>
+        <tr><th>症状</th><th>大概率卡在</th><th>怎么救</th></tr>
+        <tr><td>答得很泛、像百科</td><td>第 3 层（没说清对象和标准）</td><td>补上「哪份文件 + 给谁看 + 什么格式」</td></tr>
+        <tr><td>做到一半停了 / 步骤混乱</td><td>第 4 层（跨度过大）</td><td>拆成子任务，先交大纲再交成品</td></tr>
+        <tr><td>数据不对、引用了旧信息</td><td>第 5 层（数据源没限定）</td><td>指定文件 / 资料库，要求标注出处</td></tr>
+        <tr><td>结果是一段文字，还得自己排版</td><td>第 6 层（交付标准没提）</td><td>明确要 docx / xlsx，并说清页数、图表、命名</td></tr>
+        <tr><td>改错了不该改的文件</td><td>模式选错（不是框架问题）</td><td>改用 Plan，先看变更清单再执行</td></tr>
+      </table>
           </section>
 
     <!-- ============ SCENARIOS ============ -->
     <section id="scenarios">
       <h2 class="sec">WorkBuddy 四大实用场景</h2>
       <span class="sec-sub">三种模式覆盖全部场景，六步流程从描述任务到持续追问</span>
+      <nav class="chapter-nav"><b>本章</b><a href="#scenarios-01">01　一、使用方法</a><a href="#scenarios-02">02　二、经过实践的 4 大实用场景</a></nav>
 
-      <h3 class="blk">01　一、使用方法</h3>
+      <h3 class="blk" id="scenarios-01">01　一、使用方法</h3>
       <h4 class="blk">基本流程</h4>
       <div class="diagram">
         <svg viewBox="0 0 780 120" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC,Microsoft YaHei,sans-serif">
@@ -472,11 +583,11 @@
         <div class="menu"><b>新建任务</b><span>摘要</span><span>对话</span><span>任务</span><span>知识库</span><span>更多</span></div>
         <div style="font-size:13px;color:#555;">
           · 每日英语口语练习提醒　<span class="pill r">每天 20:30</span>　执行成功 ✓<br>
-          · automation-2024-07-03　编辑中　12/01 ✓
+          · automation-2026-11-16　编辑中　12/01 ✓
         </div>
       </div>
 
-      <h3 class="blk">02　二、经过实践的 4 大实用场景</h3>
+      <h3 class="blk" id="scenarios-02">02　二、经过实践的 4 大实用场景</h3>
       <h4 class="blk">场景 1：定时提醒任务待办</h4>
       <p>例如我要设定"每日练习口语"的定时提醒，直接选择左侧的「自动化」，添加即可。</p>
       <div class="shot">
@@ -504,8 +615,9 @@
     <section id="office">
       <h2 class="sec">WorkBuddy 办公 —— Word、Excel、PPT</h2>
       <span class="sec-sub">五问工作流打通三件套，把交付标准说清楚 AI 才好使</span>
+      <nav class="chapter-nav"><b>本章</b><a href="#office-1">办公三件套的共同工作流</a><a href="#office-2">1　Word：正式文档与方案</a><a href="#office-3">2　Excel：从脏数据到能看懂的结论</a><a href="#office-4">3　PPT：先定结构，再谈好看</a></nav>
 
-      <h3 class="blk">办公三件套的共同工作流</h3>
+      <h3 class="blk" id="office-1">办公三件套的共同工作流</h3>
       <p>无论什么文档类型，都建议把任务拆成<strong>五个问题</strong>。很多"AI 做不好"的办公任务，根源不在模型，而在<strong>交付标准不清</strong>。</p>
       <div class="shot">
         <div class="bar"><span class="dot r1"></span><span class="dot r2"></span><span class="dot r3"></span></div>
@@ -524,6 +636,7 @@
         <b>格式建议：</b>本地文件优先 <strong>Word / DOCX、Excel / XLSX、PowerPoint / PPTX</strong>；协同编辑用<strong>腾讯文档</strong>或 kdocs skill；大批量素材用 <strong>Markdown Converter</strong> 抽取结构；会议整理用<strong>魔函会议</strong>或会议纪要 Skill。
       </div>
 
+      <h3 class="blk" id="office-2">1　Word：正式文档与方案</h3>
       <h4 class="blk">适合交给 Word 的任务</h4>
       <ul>
         <li><strong>正式方案：</strong>活动策划、项目方案、营销方案、培训方案</li>
@@ -548,17 +661,69 @@
   分组与互动建议、预算估算、人员分工、横幅口号与注意事项
 - 语气务实、不过度细致，聚焦整体框架与决策点，
   具体细节留白由人工填充</div>
+
+      <h3 class="blk" id="office-3">2　Excel：从脏数据到能看懂的结论</h3>
+      <p>表格类任务的难点几乎从不在"算"，而在<strong>口径</strong>：哪几列是数值、空值怎么算、重复行算不算、汇总按哪个维度。把这些先讲清楚，剩下的它会做完。</p>
+      <h4 class="blk">适合交给 Excel 的任务</h4>
+      <ul>
+        <li><strong>清洗：</strong>去重、补缺失值、统一日期与单位格式、拆分合并单元格</li>
+        <li><strong>汇总：</strong>按维度透视、同比环比、分组 Top N</li>
+        <li><strong>呈现：</strong>条件格式、图表（折线 / 柱状 / 饼图）、多表联动</li>
+        <li><strong>产出：</strong>导出清洗后的新表，保留原表不动</li>
+      </ul>
+      <h4 class="blk">推荐流程</h4>
+      <table>
+        <tr><th>步骤</th><th>WorkBuddy 做什么</th><th>人要确认什么</th></tr>
+        <tr><td>1</td><td>读取表头与样本行，报告字段类型和异常（空值、重复、格式乱）</td><td>字段含义是否理解正确，哪些列是本该是数字却存成了文本</td></tr>
+        <tr><td>2</td><td>给出清洗与汇总方案（口径 + 步骤）</td><td>口径对不对：分母是谁、异常值留不留</td></tr>
+        <tr><td>3</td><td>执行并输出新表 + 图表</td><td>总数跟源表对得上吗（先抽查两三行）</td></tr>
+        <tr><td>4</td><td>补充结论句与关键发现</td><td>结论有没有超出数据支持的范围</td></tr>
+      </table>
+      <h4 class="blk">提示词示例</h4>
+      <div class="code"><span class="c"># 直接复制给 WorkBuddy（Plan 模式）</span>
+读 <span class="p">@销售明细.xlsx</span>（不要改动原文件）：
+1. 先告诉我有哪些字段、多少行、哪些列有空值或重复
+2. 按「地区 + 月份」汇总销售额，口径说明写清（空值如何处理、退货是否冲减）
+3. 生成一张折线趋势图 + 一张地区占比饼图
+4. 导出 <span class="p">销售_汇总.xlsx</span>，第一页放结论，第二页放明细</div>
+      <div class="callout warn"><p style="margin:0;"><b>避坑：</b>别让它直接覆盖原始数据文件。要求「另存为新表」，出错还能回头对照。数字类结论务必自己抽查两行，尤其是"合计"和"同比"。</p></div>
+
+      <h3 class="blk" id="office-4">3　PPT：先定结构，再谈好看</h3>
+      <p>AI 做 PPT 最容易翻车的不是设计，是<strong>结构空</strong>——每页都有一堆字，但没有一条主线。所以顺序必须是：先定「讲给谁、要说服他什么」，再定页面骨架，最后才是配图配色。</p>
+      <h4 class="blk">适合交给 PPT 的任务</h4>
+      <ul>
+        <li><strong>汇报类：</strong>周报月报、项目进展、复盘总结、季度经营分析</li>
+        <li><strong>提案类：</strong>方案汇报、竞品分析、产品发布、培训课件</li>
+        <li><strong>改造类：</strong>把一份长文档 / 会议纪要压缩成 10 页汇报稿</li>
+      </ul>
+      <h4 class="blk">推荐流程</h4>
+      <table>
+        <tr><th>步骤</th><th>WorkBuddy 做什么</th><th>人要确认什么</th></tr>
+        <tr><td>1</td><td>读材料，提炼 3 条主张（想让人记住什么）</td><td>这三条是不是你真正想说的</td></tr>
+        <tr><td>2</td><td>出页面骨架：每页一个标题句 + 要点 + 用图还是用表</td><td>页数、顺序、逻辑链是否成立</td></tr>
+        <tr><td>3</td><td>按骨架生成 pptx（套用统一模板与配色）</td><td>模板、字号、页脚编号是否统一</td></tr>
+        <tr><td>4</td><td>按反馈精简文字、替换配图</td><td>每页是否还留着"给人念"的长句</td></tr>
+      </table>
+      <h4 class="blk">提示词示例</h4>
+      <div class="code"><span class="c"># 直接复制给 WorkBuddy（Plan 模式）</span>
+把 <span class="p">@Q3复盘.docx</span> 做成 12 页汇报 PPT：
+- 听众是部门负责人，目标是争取下季度预算
+- 结构：现状 3 页 → 问题 2 页 → 举措 4 页 → 预算与预期 2 页 → 结论 1 页
+- 每页标题写成一个结论句（不要"现状分析"这种标签）
+- 先给页面骨架让我确认，再出 pptx</div>
+      <div class="callout tip"><p style="margin:0;"><b>一个反常识的经验：</b>要求"每页标题写成一句结论"（如「华东区贡献了 62% 增量」而不是「区域分析」），成品可用度会高一个档次——因为这逼着它先想清楚每页要证明什么。</p></div>
           </section>
 
     <!-- ============ EXPERTS & SKILLS ============ -->
     <section id="experts">
       <h2 class="sec">WorkBuddy 专家与技能</h2>
       <span class="sec-sub">给 AI 同事换上专业大脑，再装一套标准作业流程</span>
+      <nav class="chapter-nav"><b>本章</b><a href="#experts-01">01　为什么要分这两层</a><a href="#experts-02">02　专家（Expert）：谁来干</a><a href="#experts-03">03　技能（Skill）：怎么干</a><a href="#experts-04">04　开发自己的技能：从一个人用到一群…</a><a href="#experts-05">05　组合实战：一份季度竞品对标报告</a><a href="#experts-06">06　四类扩展能力怎么分工</a><a href="#experts-07">07　避坑 &amp; 验收清单</a></nav>
 
       <p>前面几章用的都是 WorkBuddy 的"通用能力"。可一旦任务需要<strong>行业判断</strong>（比如财报分析、合同审阅），或需要<strong>固定章法</strong>（比如每次都按同一套格式出报告），光靠一句需求描述就不够稳了。WorkBuddy 用两类扩展能力解决这件事：<strong>专家（Expert）</strong>决定"由谁、用什么视角来做"，<strong>技能（Skill）</strong>决定"按哪套验证过的流程来做"。</p>
       <div class="callout"><b>官方定位：</b>专业任务 = 使用专家和技能复用专业知识与工作方法，完成分析、创作、处理等任务。通用能力负责"能干"，专家和技能负责"干得专业、干得一致"。</div>
 
-      <h3 class="blk">01　为什么要分这两层</h3>
+      <h3 class="blk" id="experts-01">01　为什么要分这两层</h3>
       <table>
         <tr><th>做法</th><th>实际发生什么</th><th>适合</th></tr>
         <tr><td>只写一句需求</td><td>通用模型自由发挥，结论随对话波动</td><td>一次性的简单杂活</td></tr>
@@ -567,8 +732,8 @@
       </table>
       <div class="callout tip"><b>组合起来最强：</b>专家定"视角"，技能定"流程"，两者叠加就是一位既懂行、又守规矩的 AI 同事。</div>
 
-      <h3 class="blk">02　专家（Expert）：谁来干</h3>
-      <p>WorkBuddy 内置 <strong>100+ 领域专家</strong>，覆盖投资金融、法律合规、营销内容、数据分析、招聘 HR、教育、医疗等方向。入口在左侧栏「专家」→ 专家中心，按类别浏览，选中任意一个即可开始一段专门对话。需要多角色协作时，可以启用<strong>专家团队（Expert Team）</strong>而不是单个专家。</p>
+      <h3 class="blk" id="experts-02">02　专家（Expert）：谁来干</h3>
+      <p>WorkBuddy 的专家中心内置了覆盖多个方向的专家，包括投资金融、法律合规、营销内容、数据分析、招聘 HR、教育、医疗等（具体数量随版本更新，以客户端「专家中心」实际显示为准）。入口在左侧栏「专家」→ 专家中心，按类别浏览，选中任意一个即可开始一段专门对话。需要多角色协作时，可以启用<strong>专家团队（Expert Team）</strong>而不是单个专家。</p>
       <div class="shot">
         <div class="bar"><span class="dot r1"></span><span class="dot r2"></span><span class="dot r3"></span></div>
         <div class="menu"><b>专家中心</b><span>投资金融</span><span>法律合规</span><span>营销内容</span><span>数据分析</span><span>更多分类</span></div>
@@ -586,13 +751,14 @@
 用它审我上传的这份 Q3 财报，输出 5 条风险点 + 一页结论。</div>
       <div class="callout"><b>注意：</b>专家改变的是"判断视角"，不改变文件访问权限。真正动手仍受 Ask / Plan / Craft 三种模式约束。</div>
 
-      <h3 class="blk">03　技能（Skill）：怎么干</h3>
+      <h3 class="blk" id="experts-03">03　技能（Skill）：怎么干</h3>
       <p>技能是把<strong>验证过的工作流、具体命令、API 用法和用户约定</strong>打包成的可复用能力。任务描述一旦命中技能说明，WorkBuddy 会优先加载它、照章执行，而不是凭通用知识临场发挥——这是"每次结果都一致"的关键。</p>
       <table>
         <tr><th>层级</th><th>存放位置</th><th>作用范围</th><th>怎么选</th></tr>
         <tr><td>用户级</td><td><code>~/.workbuddy/skills/</code></td><td>个人，跨所有项目可用</td><td><strong>默认</strong>安装位置</td></tr>
         <tr><td>项目级</td><td><code>{workspace}/.workbuddy/skills/</code></td><td>项目内团队共享</td><td>需明确说明"项目级"</td></tr>
       </table>
+      <div class="callout warn"><p style="margin:0;"><b>路径以本机为准：</b>不同版本 / 平台的配置目录名可能是 <code>.workbuddy</code> 或 <code>.codebuddy</code>（例如 <code>~/.codebuddy/skills/</code>）。别硬记路径——用「列出已安装技能」让它自己报，或直接在文件管理器里看哪个目录实际存在，再决定往哪放。</p></div>
       <p><strong>三种触发方式：</strong></p>
       <table>
         <tr><th>方式</th><th>例子</th><th>说明</th></tr>
@@ -605,7 +771,7 @@
 用刚装好的技能，把「报告目录」下的 Q3.pdf 转成 docx，保留表格</div>
       <div class="callout tip"><b>生命周期：</b>先搜索再安装 → 可列出 / 禁用已启用技能 → 没有现成技能时，也能引导创建自己的技能（把团队 SOP 沉淀下来）。安装默认落在用户级，团队共用要显式指定项目级。</div>
 
-      <h3 class="blk">04　开发自己的技能：从一个人用到一群人用</h3>
+      <h3 class="blk" id="experts-04">04　开发自己的技能：从一个人用到一群人用</h3>
       <p>内置技能覆盖的是通用做法，但真正让效率翻倍的是<strong>你自己那套规矩</strong>：公司模板、命名约定、审批口径、只许读不许改的边界……这些写进 prompt 每次都要重讲，写进技能则一次生效、长期复用。</p>
       <table>
         <tr><th>不自研会怎样</th><th>自研技能带来什么</th></tr>
@@ -675,7 +841,7 @@ agent_created: true
       <div class="callout tip"><b>递进原则：</b>先自己用稳 → 再进项目仓库给同事 → 再打包跨团队 → 最后才考虑公开发布。每外扩一层，就把说明写得更完整一点。</div>
       <div class="callout warn"><b>共享前四查：</b>① 技能里<strong>不能</strong>有 token / cookie / 密码 / 内网地址 / 个人绝对路径，凭据一律运行时用环境变量注入；② description 是否让同事也能触发；③ 项目级技能进版本库前是否经过评审；④ 公开发布前是否清掉了公司私有信息与内部口径。</div>
 
-      <h3 class="blk">05　组合实战：一份季度竞品对标报告</h3>
+      <h3 class="blk" id="experts-05">05　组合实战：一份季度竞品对标报告</h3>
       <p>把"专家定视角 + 技能定流程 + 资料供素材"串成一次任务，是可复用的典型套路。</p>
       <div class="code">目标：产出 Q3 竞品对标报告（PPT）。
 请启用「竞品对标」专家；用 PPT 技能按公司统一模板生成；
@@ -690,7 +856,7 @@ agent_created: true
       </table>
       <div class="callout"><b>你确认什么：</b>大纲的维度是否齐全 → 数据来源是否被限定 → 成品版式是否符合模板。三处都对，才算验收通过。</div>
 
-      <h3 class="blk">06　四类扩展能力怎么分工</h3>
+      <h3 class="blk" id="experts-06">06　四类扩展能力怎么分工</h3>
       <p>官方把 WorkBuddy 的扩展能力归为四类，各管一段，别混用：</p>
       <div class="diagram">
         <svg viewBox="0 0 680 226" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC,Microsoft YaHei,sans-serif">
@@ -719,7 +885,7 @@ agent_created: true
         <div class="cap">四类扩展能力各管一段：专家定视角、技能定流程、连接器接数据、资料库供素材</div>
       </div>
 
-      <h3 class="blk">07　避坑 &amp; 验收清单</h3>
+      <h3 class="blk" id="experts-07">07　避坑 &amp; 验收清单</h3>
       <div class="callout warn"><b>四个常见坑：</b>① 一个会话同时启用多个专家（只能一个专家或专家团队）；② 把团队共用技能装到用户级却不告诉队友；③ 没搜索就直接安装来历不明的技能；④ 把"配了专家"当成"放开权限"——动手范围仍由工作模式决定。</div>
       <table>
         <tr><th>验收项</th><th>通过标准</th></tr>
@@ -736,8 +902,9 @@ agent_created: true
     <section id="mall">
       <h2 class="sec">用 WorkBuddy，设计一款电商商城</h2>
       <span class="sec-sub">一句话生成 C 端完整电商商城，首页到购物车全流程跑通</span>
+      <nav class="chapter-nav"><b>本章</b><a href="#mall-1">01　先看成品</a><a href="#mall-02">02　一级 / 二级分类</a><a href="#mall-03">03　功能模块拆解</a><a href="#mall-04">04　怎么跑出这个原型</a><a href="#mall-05">05　验收清单</a></nav>
 
-      <h3 class="blk">📖 先上案例</h3>
+      <h3 class="blk" id="mall-1">01　先看成品</h3>
       <p>案例是一个 C 端完整的电商商城，功能包含如下几个模块：</p>
       <div class="phonewrap">
         <div class="phone"><div class="scr">
@@ -772,7 +939,7 @@ agent_created: true
         </div></div>
       </div>
 
-      <h3 class="blk">02　一级 / 二级分类</h3>
+      <h3 class="blk" id="mall-02">02　一级 / 二级分类</h3>
       <div class="phonewrap">
         <div class="phone"><div class="scr">
           <div class="topbar"><span>分类</span><span>≡</span></div>
@@ -807,22 +974,72 @@ agent_created: true
         </div></div>
       </div>
 
-      <h3 class="blk">03　功能模块</h3>
-      <p>以上案例是一个 C 端完整的电商商城，其功能包含如下几个模块：</p>
+      <h3 class="blk" id="mall-03">03　功能模块拆解</h3>
+      <p>这个成品的完整功能面拆下来是五个模块，前面截图只是其中三段。理解这个拆法，比记住截图更有用——换任何一个行业，模块结构都大同小异。</p>
+
       <h4 class="blk">一、首页</h4>
       <ul>
-        <li><strong>门店管理：</strong>支持定位、搜索、切换。</li>
-        <li><strong>商品搜索：</strong>支持商品搜索、历史搜索、热门推荐。</li>
+        <li><strong>门店管理：</strong>支持定位、搜索、切换；切换门店后商品库存与价格联动刷新。</li>
+        <li><strong>商品搜索：</strong>关键词搜索、历史搜索、热门推荐、搜索结果按相关度排序。</li>
+        <li><strong>运营位：</strong>顶部 banner、限时秒杀（带倒计时）、品类快捷入口。</li>
       </ul>
-      <div class="callout">一句话即可让 WorkBuddy 从首页、门店选择、商品列表、分类、详情到购物车全流程生成，作为 C 端电商商城的完整原型。</div>
+
+      <h4 class="blk">二、商品列表与分类</h4>
+      <ul>
+        <li><strong>分类导航：</strong>一级分类（粮油副食 / 休闲食品 / 饮料饮品…）+ 二级分类联动。</li>
+        <li><strong>列表展示：</strong>商品图、名称、规格、价格、销量；支持网格 / 列表两种视图。</li>
+        <li><strong>筛选排序：</strong>按销量、价格升降、新品排序；支持价格区间与品牌筛选。</li>
+      </ul>
+
+      <h4 class="blk">三、商品详情</h4>
+      <ul>
+        <li><strong>基础信息：</strong>多图、名称、价格（含划线原价）、规格选择、库存状态。</li>
+        <li><strong>信任信息：</strong>销量、已售数据、评价摘要、服务承诺（买贵包赔、极速退款）。</li>
+        <li><strong>转化动作：</strong>加入购物车、立即购买——两按钮的位置和视觉权重是转化关键。</li>
+      </ul>
+
+      <h4 class="blk">四、购物车与结算</h4>
+      <ul>
+        <li><strong>购物车：</strong>商品勾选、数量增减、单行小计、全选、合计金额、角标数量提示。</li>
+        <li><strong>结算：</strong>收货地址、配送时间、优惠券抵扣、支付方式、订单确认。</li>
+      </ul>
+
+      <h4 class="blk">五、账号与售后（原型阶段可只留入口）</h4>
+      <ul>
+        <li>登录 / 注册、收货地址管理、订单列表与状态跟踪、退款售后入口。</li>
+      </ul>
+
+      <h3 class="blk" id="mall-04">04　怎么跑出这个原型</h3>
+      <p>关键是把"要什么"一次说全，而不是先说"做个商城"再一点点补。下面这段可以整段复制：</p>
+      <div class="code"><span class="c"># Plan 模式，先生成页面清单与结构，确认后再写代码</span>
+做一个 C 端生鲜超市的移动端商城原型（纯前端，可本地打开）：
+- 页面：首页、门店选择、商品列表、商品详情、购物车、结算
+- 风格：红白主色，卡片圆角，移动端 375px 宽
+- 首页要有：门店切换、搜索框、banner、品类入口、限时秒杀（带倒计时）
+- 商品数据用本地 mock json，至少 12 个商品，分 3 个一级分类
+- 购物车支持增删改数量和金额合计，状态存 localStorage
+先给我页面清单和每个页面的模块结构，我确认后再写代码。</div>
+      <div class="callout tip"><p style="margin:0;"><b>为什么要先要"页面清单"：</b>原型类任务最贵的返工是结构改（少一个页面、页面之间跳转不通），而结构恰恰是改起来最贵的。先评审结构，再让它写代码，能省掉大半来回。</p></div>
+
+      <h3 class="blk" id="mall-05">05　验收清单</h3>
+      <table>
+        <tr><th>检查项</th><th>通过标准</th></tr>
+        <tr><td>页面完整</td><td>六个页面都能打开，互相之间跳转不出现死路</td></tr>
+        <tr><td>主流程通</td><td>首页 → 选门店 → 列表 → 详情 → 加购 → 购物车 → 结算，一路走得通</td></tr>
+        <tr><td>数据一致</td><td>购物车数量与合计金额对得上，刷新页面不丢（localStorage 生效）</td></tr>
+        <tr><td>移动端可用</td><td>375px 宽度下无横向滚动、无文字溢出、按钮可点</td></tr>
+        <tr><td>可继续改</td><td>商品数据集中在 mock 文件里，改数据不用动页面逻辑</td></tr>
+      </table>
+      <div class="callout">一句话就能从首页、门店选择、商品列表、分类、详情到购物车全流程生成，这是 WorkBuddy 做原型类任务最典型的用法：<strong>它出结构和代码，你定信息和取舍。</strong></div>
           </section>
 
     <!-- ============ OBSIDIAN ============ -->
     <section id="obsidian">
       <h2 class="sec">WorkBuddy + Obsidian 自动化工作流</h2>
       <span class="sec-sub">只读不写全库保护，WorkBuddy 把知识库自动整理管起来</span>
+      <nav class="chapter-nav"><b>本章</b><a href="#obsidian-01">01　WorkBuddy + Obsi…</a><a href="#obsidian-02">02　一、自动化工作流的第一道关卡是 …</a><a href="#obsidian-03">03　二、WorkBuddy 在这个组…</a><a href="#obsidian-04">04　WorkBuddy 在这个组合里…</a></nav>
 
-      <h3 class="blk">01　WorkBuddy + Obsidian 自动化工作流</h3>
+      <h3 class="blk" id="obsidian-01">01　WorkBuddy + Obsidian 自动化工作流</h3>
       <div class="diagram">
         <svg viewBox="0 0 780 230" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC,Microsoft YaHei,sans-serif">
           <g font-size="12">
@@ -846,7 +1063,7 @@ agent_created: true
         <div class="cap">图：Obsidian 库分区 + WorkBuddy 读写边界</div>
       </div>
 
-      <h3 class="blk">02　一、自动化工作流的第一道关卡是 inbox</h3>
+      <h3 class="blk" id="obsidian-02">02　一、自动化工作流的第一道关卡是 inbox</h3>
       <p>你可以用浏览器保存网页、手机随手记录灵感，或把 PDF、截图、会议纪要、视频丢进库里。社区有很多快速捕获工具，关键都捕获进 vault。WorkBuddy 能读取本地文件、调用 Skills、处理文档/音频/视频/Markdown，并通过 Obsidian Skill 对笔记进行读、写、搜索与整理。</p>
       <div class="diagram">
         <svg viewBox="0 0 780 90" xmlns="http://www.w3.org/2000/svg" font-family="PingFang SC,Microsoft YaHei,sans-serif">
@@ -864,14 +1081,14 @@ agent_created: true
         <div class="cap">图：只读入 → WorkBuddy 处理 → 只写 review → 人工合并</div>
       </div>
 
-      <h3 class="blk">03　二、WorkBuddy 在这个组合里负责执行层</h3>
+      <h3 class="blk" id="obsidian-03">03　二、WorkBuddy 在这个组合里负责执行层</h3>
       <div class="code"><span class="c"># 这个组合里的分工</span>
 1. Obsidian 保存长期知识。
 2. WorkBuddy 处理原始资料。
 3. review 目录承接 AI 生成的半成品。
 4. 我负责最后确认。</div>
 
-      <h3 class="blk">04　WorkBuddy 在这个组合里主要做六类事</h3>
+      <h3 class="blk" id="obsidian-04">04　WorkBuddy 在这个组合里主要做六类事</h3>
       <ul>
         <li><strong>第一，读取指定范围。</strong>例如只读 00-inbox、10-sources、_templates，不要全库扫描。</li>
         <li><strong>第二，整理和归类。</strong>把实时笔记按主题、项目、资料类型分组，找出重复内容、标注待处理材料。</li>
@@ -933,7 +1150,7 @@ agent_created: true
       <div class="callout tip"><b>思路：</b>一个完整 AI 应用 = 数据源 + 知识库 + 问答技能 + 自动化触发，WorkBuddy 把它们串成闭环。</div>
     </section>
 
-    <div class="footer">WorkBuddy 学习手册 ｜ 截图与界面为示意重建</div>
+    <div class="footer">WorkBuddy 学习手册 ｜ 版本 v1.1 · 更新于 2026-11-16 ｜ 文中界面均为示意重建，非真实截图</div>
   </main>
 </div>
 </body>

@@ -1,6 +1,6 @@
-# WorkBuddy 学习手册
+# WorkBuddy 学习心得
 
-一本写给「想把活交给 AI 干完」的人的手册。案例驱动，从零基础到上手。**交付物是一个单文件 HTML**，零依赖、可离线、可直接分享；内容则用 Markdown 维护。
+一本写给「想把活交给 AI 干完」的人的学习心得。案例驱动，从零基础到上手。**交付物是一个单文件 HTML**，零依赖、可离线、可直接分享；内容则用 Markdown 维护。
 
 📖 **在线阅读**：<https://davidchenliang.github.io/workbuddy-learning-handbook/>
 
@@ -76,7 +76,7 @@ open https://davidchenliang.github.io/workbuddy-learning-handbook/
 # 方式三：下载 PDF 版（A4 / 39 页，适合打印存档）
 ```
 
-📄 **PDF 版**：[WorkBuddy学习手册_v1.16_20261117.pdf](https://github.com/DavidChenLiang/workbuddy-learning-handbook/blob/main/WorkBuddy学习手册_v1.16_20261117.pdf)
+📄 **PDF 版**：[WorkBuddy学习心得_v1.17_20261118.pdf](https://github.com/DavidChenLiang/workbuddy-learning-handbook/blob/main/WorkBuddy学习心得_v1.17_20261118.pdf)
 
 - 左侧栏是全书目录，**桌面端固定悬浮**，点章节直达；第 8 章下展开 8.1–8.8 子节，可直接跳到某个示例。
 - 每章标题下方有「本章」小节导航条，可跳转到具体小节。
@@ -96,7 +96,7 @@ open https://davidchenliang.github.io/workbuddy-learning-handbook/
 
 ## 发布清单（推 GitHub / Pages 时）
 
-远端仓库只放成品：**推 `index.html` + `README.md` + 当前版本的 PDF 成片**；`WorkBuddy实战手册_20261112.html` 是旧链接跳转页，已一致可不动。`assets/` 不必推（图片渲染时已内嵌为 data URI）。PDF 由 `index.html` 经浏览器打印导出（A4、无页眉页脚），随版本一起发布，仓库只保留当前版本；漫画的独立图片与 HTML 也不推（已内嵌进书里）。
+远端仓库只放成品：**推 `index.html` + `README.md` + 当前版本的 PDF 成片**；`WorkBuddy实战手册_20261112.html` 是旧链接跳转页，本次随书名同步更新文案（文件名不变）。`assets/` 不必推（图片渲染时已内嵌为 data URI）。PDF 由 `index.html` 经浏览器打印导出（A4、无页眉页脚），随版本一起发布，仓库只保留当前版本；漫画的独立图片与 HTML 也不推（已内嵌进书里）。
 
 **一律不推**：`示例输出_3.3_20261117.md`（旧口径，含公司内部路径）、`第8章内容审核_20261117.md` 与 `全书检查报告_20261117.md`（内部审核记录）、`content.md` / `figures.html` / `template.html` / `render.py`（源文件，是否纳入版本管理另行决定）、`.workbuddy/`（备份与记忆）。
 
@@ -106,6 +106,7 @@ open https://davidchenliang.github.io/workbuddy-learning-handbook/
 
 | 版本 | 日期 | 变更 |
 |---|---|---|
+| v1.17 | 2026-11-18 | 书名由「WorkBuddy 学习手册」改为「**WorkBuddy 学习心得**」：封面 / 侧栏品牌、前言标题与侧栏文字、页脚、页面 title 与 og / twitter meta、跳转页、漫画成片页统一改名；重新渲染 `index.html` 并重新导出 A4 PDF（仓库只保留当前版本 PDF）。仓库名与 Pages 链接不变 |
 | v1.16 | 2026-11-17 | 阅读友好度：把正文与提示框里 13 处连写的 ①②③④ 枚举（验收点 / 边界 / 常见坑 / 共享前四查等）改成**逐条硬换行**，每条独占一行；行首 `<br>` 是渲染器支持的段内硬换行语法（软换行默认被合并为空格），已同步 `content.md` 语法速查与 README 语法表。代码块里的 1. / 2. / 3. / 4. 因 `.code` 已有 `white-space:pre-wrap` 本就逐行显示，未改动。同步页脚版本；同日发布至 GitHub Pages，并附 A4 PDF 版 |
 | v1.15 | 2026-11-17 | 按《全书检查报告_20261117》C 类（可选优化）收尾：① 8.1 补边界提醒框，与 8.2–8.8 体例一致；② 1.1 / 1.3 表格措辞按官方口径软化（「企业系统」→「连接器（需先连接并授权）」、「桌面通用智能体」→「全场景 AI 工作台」），不把代码开发边界写死；③ README 与书稿的浏览器扩展措辞统一为「确认扩展已连接」；④ 更新日志补 v1.10 撤回说明，版本序列连续；⑤ 删除 template 中未被引用的 `--teal` / `--purple` 变量。按示例篇定位，8.3 / 8.7 的短篇幅保留、不强行拉平。同步页脚版本与检查报告状态 |
 | v1.14 | 2026-11-17 | 按《全书检查报告_20261117》A+B 全量修复：① 1.4 按官方 Overview 六项核心能力重写（删「七类能力 / 多模态生成 / 系统访问 / 自动化」旧归纳，标题改「官方六项核心能力」）；② 删除 CodeBuddy「同源 / 同门 / 同一团队」无依据关系断言，1.2 改为「定位不同」并注明官方未说明团队关系；③ 阅读说明改为零基础受众、体例承诺改成与实际一致的「提示词 / 边界 / 验收点」；④ 1.1 删「自动发邮件 / 发社交平台」暗示，改为需连接并授权；⑤ 删 template 作者 meta；⑥ 补发布清单，明确排除含内部路径的旧产物。同步总目录、第 1 章导语、页脚版本与准确性说明。C 类未动，A3 线上同步仍待点头 |
